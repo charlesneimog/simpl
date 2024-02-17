@@ -6,22 +6,20 @@
 #include "base.h"
 
 extern "C" {
-    #include "sms.h"
+#include "sms.h"
 }
 
-#include "SndObj.h"
+#include "AdSyn.h"
 #include "HarmTable.h"
 #include "SinAnal.h"
-#include "AdSyn.h"
+#include "SndObj.h"
 
 #include "Breakpoint.h"
 #include "Oscillator.h"
 
 using namespace std;
 
-namespace simpl
-{
-
+namespace simpl {
 
 // ---------------------------------------------------------------------------
 // Synthesis
@@ -30,125 +28,120 @@ namespace simpl
 // ---------------------------------------------------------------------------
 
 class Synthesis {
-    protected:
-        int _frame_size;
-        int _hop_size;
-        int _max_partials;
-        int _sampling_rate;
+protected:
+  int _frame_size;
+  int _hop_size;
+  int _max_partials;
+  int _sampling_rate;
 
-    public:
-        Synthesis();
-        virtual void reset();
-        int frame_size();
-        virtual void frame_size(int new_frame_size);
-        int hop_size();
-        virtual void hop_size(int new_hop_size);
-        int max_partials();
-        virtual void max_partials(int new_max_partials);
-        int sampling_rate();
-        void sampling_rate(int new_sampling_rate);
+public:
+  Synthesis();
+  virtual void reset();
+  int frame_size();
+  virtual void frame_size(int new_frame_size);
+  int hop_size();
+  virtual void hop_size(int new_hop_size);
+  int max_partials();
+  virtual void max_partials(int new_max_partials);
+  int sampling_rate();
+  void sampling_rate(int new_sampling_rate);
 
-        virtual void synth_frame(Frame* frame);
-        virtual Frames synth(Frames frames);
+  virtual void synth_frame(Frame *frame);
+  virtual Frames synth(Frames frames);
 };
-
 
 // ---------------------------------------------------------------------------
 // MQSynthesis
 // ---------------------------------------------------------------------------
 class MQSynthesis : public Synthesis {
-    private:
-        sample* _prev_amps;
-        sample* _prev_freqs;
-        sample* _prev_phases;
-        sample hz_to_radians(sample f);
+private:
+  s_sample *_prev_amps;
+  s_sample *_prev_freqs;
+  s_sample *_prev_phases;
+  s_sample hz_to_radians(s_sample f);
 
-    public:
-        MQSynthesis();
-        ~MQSynthesis();
-        void reset();
-        using Synthesis::max_partials;
-        void max_partials(int new_max_partials);
-        void synth_frame(Frame* frame);
+public:
+  MQSynthesis();
+  ~MQSynthesis();
+  void reset();
+  using Synthesis::max_partials;
+  void max_partials(int new_max_partials);
+  void synth_frame(Frame *frame);
 };
-
 
 // ---------------------------------------------------------------------------
 // SMSSynthesis
 // ---------------------------------------------------------------------------
 class SMSSynthesis : public Synthesis {
-    private:
-        SMSSynthParams _synth_params;
-        SMSData _data;
+private:
+  SMSSynthParams _synth_params;
+  SMSData _data;
 
-    public:
-        SMSSynthesis();
-        ~SMSSynthesis();
-        using Synthesis::hop_size;
-        void hop_size(int new_hop_size);
-        using Synthesis::max_partials;
-        void max_partials(int new_max_partials);
-        int num_stochastic_coeffs();
-        int stochastic_type();
-        int det_synthesis_type();
-        void det_synthesis_type(int new_det_synthesis_type);
-        void synth_frame(Frame* frame);
+public:
+  SMSSynthesis();
+  ~SMSSynthesis();
+  using Synthesis::hop_size;
+  void hop_size(int new_hop_size);
+  using Synthesis::max_partials;
+  void max_partials(int new_max_partials);
+  int num_stochastic_coeffs();
+  int stochastic_type();
+  int det_synthesis_type();
+  void det_synthesis_type(int new_det_synthesis_type);
+  void synth_frame(Frame *frame);
 };
-
 
 // ---------------------------------------------------------------------------
 // SndObjSynthesis
 // ---------------------------------------------------------------------------
 class SimplSndObjAnalysisWrapper : public SinAnal {
-    public:
-        SimplSndObjAnalysisWrapper(int max_partials);
-        ~SimplSndObjAnalysisWrapper();
-        Peaks partials;
-        int GetTrackID(int track);
-        int GetTracks();
-        double Output(int pos);
+public:
+  SimplSndObjAnalysisWrapper(int max_partials);
+  ~SimplSndObjAnalysisWrapper();
+  Peaks partials;
+  int GetTrackID(int track);
+  int GetTracks();
+  double Output(int pos);
 };
-
 
 class SndObjSynthesis : public Synthesis {
-    private:
-        SimplSndObjAnalysisWrapper* _analysis;
-        HarmTable* _table;
-        SimplAdSyn* _synth;
+private:
+  SimplSndObjAnalysisWrapper *_analysis;
+  HarmTable *_table;
+  SimplAdSyn *_synth;
 
-    public:
-        SndObjSynthesis();
-        ~SndObjSynthesis();
-        void reset();
-        using Synthesis::frame_size;
-        void frame_size(int new_frame_size);
-        using Synthesis::hop_size;
-        void hop_size(int new_hop_size);
-        using Synthesis::max_partials;
-        void max_partials(int new_max_partials);
-        void synth_frame(Frame* frame);
+public:
+  SndObjSynthesis();
+  ~SndObjSynthesis();
+  void reset();
+  using Synthesis::frame_size;
+  void frame_size(int new_frame_size);
+  using Synthesis::hop_size;
+  void hop_size(int new_hop_size);
+  using Synthesis::max_partials;
+  void max_partials(int new_max_partials);
+  void synth_frame(Frame *frame);
 };
-
 
 // ---------------------------------------------------------------------------
 // LorisSynthesis
 // ---------------------------------------------------------------------------
 class LorisSynthesis : public Synthesis {
-    private:
-        std::vector<Loris::Oscillator> _oscs;
-        sample _bandwidth;
+private:
+  std::vector<Loris::Oscillator> _oscs;
+  s_sample _bandwidth;
 
-    public:
-        LorisSynthesis();
-        ~LorisSynthesis();
-        void reset();
-        using Synthesis::max_partials;
-        void max_partials(int new_max_partials);
-        sample bandwidth();
-        void bandwidth(sample new_bandwidth);
-        void synth_frame(Frame* frame);
+public:
+  LorisSynthesis();
+  ~LorisSynthesis();
+  void reset();
+  using Synthesis::max_partials;
+  void max_partials(int new_max_partials);
+  s_sample bandwidth();
+  void bandwidth(s_sample new_bandwidth);
+  void synth_frame(Frame *frame);
 };
 
-} // end of namespace Simpl
+} // namespace simpl
 
 #endif
