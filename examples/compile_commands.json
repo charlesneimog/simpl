@@ -1,0 +1,19 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/c++",
+      "-I/home/neimog/Documents/Git/simpl/examples/../src/simpl",
+      "-I/home/neimog/Documents/Git/simpl/examples/../src/mq",
+      "-I/home/neimog/Documents/Git/simpl/examples/../src/sms",
+      "-I/home/neimog/Documents/Git/simpl/examples/../src/loris",
+      "-I/home/neimog/Documents/Git/simpl/examples/../src/sndobj",
+      "-c",
+      "-o",
+      "CMakeFiles/rtharmonicsynthesis.dir/rtharmonicsynthesis.cpp.o",
+      "/home/neimog/Documents/Git/simpl/examples/rtharmonicsynthesis.cpp"
+    ],
+    "directory": "/home/neimog/Documents/Git/simpl/examples/build",
+    "file": "/home/neimog/Documents/Git/simpl/examples/rtharmonicsynthesis.cpp",
+    "output": "/home/neimog/Documents/Git/simpl/examples/build/CMakeFiles/rtharmonicsynthesis.dir/rtharmonicsynthesis.cpp.o"
+  }
+]

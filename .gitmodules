@@ -1,0 +1,6 @@
+[submodule "src/libsms"]
+	path = src/libsms
+	url = git@github.com:charlesneimog/libsms.git
+[submodule "src/loris"]
+	path = src/loris
+	url = git@github.com:charlesneimog/loris.git

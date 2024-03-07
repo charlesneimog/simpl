@@ -1,0 +1,22 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/c++",
+      "-DHAVE_FFTW3_H",
+      "-Dsimpl_EXPORTS",
+      "-I/home/neimog/Documents/Git/simpl/src/simpl",
+      "-I/home/neimog/Documents/Git/simpl/src/libsms/src",
+      "-I/home/neimog/Documents/Git/simpl/src/sndobj",
+      "-I/home/neimog/Documents/Git/simpl/src/loris/src",
+      "-I/home/neimog/Documents/Git/simpl/src/mq",
+      "-fPIC",
+      "-c",
+      "-o",
+      "CMakeFiles/simpl.dir/src/simpl/partial_tracking.cpp.o",
+      "/home/neimog/Documents/Git/simpl/src/simpl/partial_tracking.cpp"
+    ],
+    "directory": "/home/neimog/Documents/Git/simpl/build",
+    "file": "/home/neimog/Documents/Git/simpl/src/simpl/partial_tracking.cpp",
+    "output": "/home/neimog/Documents/Git/simpl/build/CMakeFiles/simpl.dir/src/simpl/partial_tracking.cpp.o"
+  }
+]
