@@ -84,12 +84,9 @@ class MQPartialTracking : public PartialTracking {
 // ---------------------------------------------------------------------------
 class SMSPartialTracking : public PartialTracking {
   private:
-    SMS_AnalParams _analysis_params;
-    SMS_SndHeader _sound_header;
-    SMS_Header _header;
-    // int sms_initAnalysis(SMS_AnalParams *pAnalParams, SMS_SndHeader *pSoundHeader);
-
-    SMS_Data _data;
+    SMSAnalysisParams _analysis_params;
+    SMSHeader _header;
+    SMSData _data;
     s_sample *_peak_amplitude;
     s_sample *_peak_frequency;
     s_sample *_peak_phase;
