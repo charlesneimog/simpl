@@ -4,6 +4,7 @@ Thumbs.db
 *.swp
 *.aiff
 *.sdif
+*.cache
 
 # Distutils/pip files
 build
