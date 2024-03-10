@@ -53,6 +53,4 @@ if(BUILD_TESTS)
 
     add_executable(tests ${test_src})
     target_link_libraries(tests ${libs})
-else()
-    message("Not building tests. To change run CMake with -D BUILD_TESTS=yes")
 endif()
