@@ -28,7 +28,7 @@ set(libs m fftw3 gsl gslcblas)
 
 include_directories(src/simpl src/sms src/sndobj src/loris src/mq)
 
-add_library(simpl SHARED ${source_files})
+add_library(simpl STATIC ${source_files})
 target_link_libraries(simpl ${libs})
 
 install(TARGETS simpl LIBRARY DESTINATION lib)
