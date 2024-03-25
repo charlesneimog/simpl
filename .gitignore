@@ -28,3 +28,4 @@ tests/testbase
 tests/testbase.dSYM
 tests/*.json
 tests/*.wav
+.cache/clangd/index
