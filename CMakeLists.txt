@@ -5,9 +5,20 @@ project(simpl)
 #│              Libraries               │
 #╰──────────────────────────────────────╯
 add_subdirectory(src/loris)
+set_target_properties(loris PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR})
+set_target_properties(loris PROPERTIES POSITION_INDEPENDENT_CODE ON)
+
 add_subdirectory(src/mq)
+set_target_properties(mq PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR})
+set_target_properties(mq PROPERTIES POSITION_INDEPENDENT_CODE ON)
+
 add_subdirectory(src/sndobj)
+set_target_properties(sndobj PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR})
+set_target_properties(sndobj PROPERTIES POSITION_INDEPENDENT_CODE ON)
+
 add_subdirectory(src/sms)
+set_target_properties(sms PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR})
+set_target_properties(sms PROPERTIES POSITION_INDEPENDENT_CODE ON)
 
 #╭──────────────────────────────────────╮
 #│                SIMPL                 │
